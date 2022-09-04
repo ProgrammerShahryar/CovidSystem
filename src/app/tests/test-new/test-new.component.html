@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<h2 [ngStyle]="{'background-color':'#3f51b5'}">Record New Test(New Patient)</h2>
+
+<mat-card>
+  <form (submit)="onSavePost(testForm)" #testForm="ngForm">
+  <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+    <mat-label>Enter username</mat-label>
+    <input required name="username" [ngModel]="test?.username" matInput #input maxlength="10" placeholder="Ex. John" #username="ngModel">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    <mat-error *ngIf="username.invalid">Please enter username</mat-error>
+  </mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Enter your password</mat-label>
+  <input name="password" matInput [type]="hide ? 'password' : 'text'" [ngModel]="test?.password" required #password="ngModel">
+  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+  <mat-error *ngIf="password.invalid">Please enter password</mat-error>
+</mat-form-field>
+
+<mat-form-field hintLabel="Max 20 characters" appearance="fill">
+  <mat-label>Enter name</mat-label>
+  <input required name="name" [ngModel]="test?.name" matInput #input maxlength="20" placeholder="Ex. John" #name="ngModel">
+  <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+  <mat-error *ngIf="name.invalid">Please enter name</mat-error>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Select Patient Type</mat-label>
+  <mat-select required [ngModel]="test?.condition" #condition="ngModel" id="condition" name="condition">
+    <mat-option value="returnee">returnee</mat-option>
+    <mat-option value="quarantined">quarantined</mat-option>
+    <mat-option value="close contact">close contact</mat-option>
+    <mat-option value="infected">infected</mat-option>
+    <mat-option value="suspected">suspected</mat-option>
+  </mat-select>
+  <mat-error *ngIf="condition.invalid">Please choose patient type</mat-error>
+</mat-form-field>
+
+<mat-form-field>
+  <textarea
+  matInput
+  rows="4"
+  name="symptoms"
+  [ngModel]="test?.symptoms"
+  required
+  placeholder="Enter patient symptoms"
+  #symptoms="ngModel"></textarea>
+  <mat-error *ngIf="symptoms.invalid">Please enter patient symptoms</mat-error>
+</mat-form-field>
+
+<button
+  mat-raised-button
+  color = "accent"
+  type="submit" (click)="popup = true">Submit</button>
+</form>
+
+<div class="overlay" *ngIf="popup">
+	<div class="popup">
+		<h3>Congrats</h3>
+		<a class="close" (click)="popup = false">&times;</a>
+		<div class="content">
+      Test details has been recorded
+		</div>
+	</div>
+</div>
+</mat-card>

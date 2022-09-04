@@ -1,0 +1,16 @@
+<app-Navbar4></app-Navbar4>
+<h2 [ngStyle]="{'background-color':'#3f51b5'}">Update Stock</h2>
+<mat-accordion multi="true" *ngIf="stocks.length>0">
+  <mat-expansion-panel *ngFor="let stock of stocks">
+    <mat-expansion-panel-header>
+      {{"stockName: " + stock.stockName}}
+    </mat-expansion-panel-header>
+    <p>{{"stockNumber: " + stock.stockNumber}}</p>
+
+
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/updateStockList',stock.id]">Update</a>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="stocks.length == 0"> No Stock added yet </p>

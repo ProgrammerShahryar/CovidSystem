@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<h2 [ngStyle]="{'background-color':'#3f51b5'}">Update Test Result</h2>
+
+
+<mat-card>
+  <form (submit)="onSaveTest(testForm)" #testForm="ngForm">
+
+  <mat-form-field appearance="fill">
+   <mat-label>Patient Name</mat-label>
+    <input required name="name" [ngModel]="test?.name" disabled matInput #input maxlength="20" placeholder="Ex. John" #name="ngModel">
+    <mat-error *ngIf="name.invalid">Please enter name</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient type</mat-label>
+    <mat-select required [ngModel]="test?.condition" disabled #condition="ngModel" id="condition" name="condition">
+      <mat-option value="returnee">returnee</mat-option>
+      <mat-option value="quarantined">quarantined</mat-option>
+      <mat-option value="close contact">close contact</mat-option>
+      <mat-option value="infected">infected</mat-option>
+      <mat-option value="suspected">suspected</mat-option>
+    </mat-select>
+    <mat-error *ngIf="condition.invalid">Please choose patient type</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+   <mat-label>Patient symptoms</mat-label>
+    <input required name="symptoms" [ngModel]="test?.symptoms" disabled matInput #input placeholder="Patient symptoms" #symptoms="ngModel">
+    <mat-error *ngIf="symptoms.invalid">Please enter patient symptoms</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+   <textarea
+   matInput
+   rows="3"
+   name="result"
+   ngModel
+   required
+   placeholder="Enter test results"
+   #result="ngModel"></textarea>
+   <mat-error *ngIf="result.invalid">Please enter test results</mat-error>
+ </mat-form-field>
+
+<button
+  mat-raised-button
+  color = "accent"
+  type="submit" (click)="popup = true">Submit</button>
+</form>
+
+</mat-card>
+<br>

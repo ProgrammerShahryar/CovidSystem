@@ -1,0 +1,36 @@
+<app-Navbar4></app-Navbar4>
+<h2 [ngStyle]="{'background-color':'#3f51b5'}">Record New Stock</h2>
+
+<mat-card>
+  <form (submit)="onAddStock(stockForm)" #stockForm="ngForm">
+  <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+    <mat-label>Enter Test Kit Name</mat-label>
+    <input required name="stockName" [ngModel]="manageStock?.stockName" matInput #input maxlength="10" placeholder="Mouth kit" #stockName="ngModel">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    <mat-error *ngIf="stockName.invalid">Please enter username</mat-error>
+  </mat-form-field>
+
+    <mat-form-field hintLabel="Max 3 characters" appearance="fill">
+      <mat-label>Enter Stock Number</mat-label>
+      <input required name="stockNumber" [ngModel]="manageStock?.stockNumber" matInput #input maxlength="3" placeholder="100" #stockNumber="ngModel" type="number">
+      <mat-hint align="end">{{input.value?.length || 0}}/3</mat-hint>
+      <mat-error *ngIf="stockNumber.invalid">Please enter Stock</mat-error>
+    </mat-form-field>
+
+
+<button
+  mat-raised-button
+  color = "accent"
+  type="submit" (click)="popup = true">Submit</button>
+</form>
+
+<div class="overlay" *ngIf="popup">
+	<div class="popup">
+		<h3>Congrats</h3>
+		<a class="close" (click)="popup = false">&times;</a>
+		<div class="content">
+      Stock has been recorded
+		</div>
+	</div>
+</div>
+</mat-card>

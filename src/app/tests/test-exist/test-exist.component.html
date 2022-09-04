@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<h2 [ngStyle]="{'background-color':'#3f51b5'}">Record New Test(Existing Patient)</h2>
+<mat-accordion multi="true" *ngIf="tests.length>0">
+  <mat-expansion-panel *ngFor="let test of tests">
+    <mat-expansion-panel-header>
+      {{"Username: " + test.username}}
+    </mat-expansion-panel-header>
+    <p>{{"PatientType: " + test.condition}}</p>
+      <p>{{"Symptoms: " + test.symptoms}}</p>
+      <p>{{"Status: " + test.status}}</p>
+      <p>{{"Test Result: " + test.result}}</p>
+
+      <mat-action-row>
+        <a mat-button color="primary" [routerLink]="['/edit',test.id]">Edit Patient Details</a>
+        <a mat-button color="primary" [routerLink]="['/update',test.id]">Update Test Result</a>
+        <button mat-button color="warn" (click)="onDelete(test.id)">Delete</button>
+      </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="tests.length == 0"> No test added yet </p>

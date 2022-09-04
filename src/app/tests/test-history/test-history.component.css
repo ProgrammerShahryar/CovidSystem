@@ -1,0 +1,25 @@
+h2{
+  text-align:center;
+  color: white;
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  margin:300px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+mat-card{
+  text-align: center;
+  margin:300px;
+  margin-top: 30px;
+}
+
+mat-form-field,
+  textarea{
+    width: 100%;
+  }
+
+table{
+  margin:300px;
+  margin-top: 30px;
+  width: 760px;
+  }
